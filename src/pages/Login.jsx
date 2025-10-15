@@ -1,7 +1,17 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../components/AuthProvider";
 
 const Login = () => {
+  const { loginUser } = useContext(AuthContext);
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+
+    loginUser(email, password);
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
       <div className="w-full max-w-md backdrop-blur-md bg-gray-900/60 border border-gray-700 rounded-2xl shadow-2xl p-8">
@@ -12,11 +22,12 @@ const Login = () => {
           Log in to continue your journey.
         </p>
 
-        <form className="space-y-5">
+        <form onSubmit={handleLogin} className="space-y-5">
           <div>
             <label className="block text-gray-300 mb-2">Email</label>
             <input
               type="email"
+              name="email"
               placeholder="you@example.com"
               className="w-full input input-bordered bg-gray-800 border-gray-700 text-gray-100 focus:border-primary focus:ring-2 focus:ring-primary px-2"
               required
@@ -27,6 +38,7 @@ const Login = () => {
             <label className="block text-gray-300 mb-2">Password</label>
             <input
               type="password"
+              name="password"
               placeholder="••••••••"
               className="w-full input input-bordered bg-gray-800 border-gray-700 text-gray-100 focus:border-primary focus:ring-2 focus:ring-primary px-2"
               required
