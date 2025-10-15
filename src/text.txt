@@ -1,0 +1,17 @@
+// working with context
+
+1. create a context
+    export const DataContext = CreateContext(null)
+
+
+2. wrap the children component with context provider (provider)
+    const data = {name = "Raihan", age= 25}
+
+    <DataContext.Provider value = {data}>
+        <ChildrenComponent/>
+    </DataContext.Provider>
+
+
+3. access context value
+    import {DataContext} from "..path"
+    const contextData = useContext(DataContext)
